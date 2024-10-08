@@ -1,9 +1,17 @@
-import Image from 'next/image'
+"use client";
+import React, { useState } from "react";
+import { FileUpload } from "@/components/file-upload";
 
-export default function Home() {
+export default function FileUploadDemo() {
+  const [files, setFiles] = useState<File[]>([]);
+  const handleFileUpload = (files: File[]) => {
+    setFiles(files);
+    console.log(files);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-6xl leading-normal tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-500">Next.js Docker Boilerplate</h1>
-    </main>
-  )
+    <div className="w-full max-w-4xl mx-auto min-h-96 border border-dashed bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 rounded-lg">
+      <FileUpload onChange={handleFileUpload} />
+    </div>
+  );
 }
